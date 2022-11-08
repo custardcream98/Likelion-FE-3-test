@@ -4,6 +4,14 @@ const MAX_TIME = {
   "timer-minute": 59,
   "timer-second": 59,
 };
+const getSecureInputValue = (name, value) => {
+  if (MAX_TIME[name] < parseInt(value)) {
+    return MAX_TIME[name].toString();
+  } else if (parseInt(value) < 0 || value === "") {
+    return "00";
+  }
+  return value.slice(-2).padStart(2, "0");
+};
 
 export class Timer {
   constructor() {
@@ -30,18 +38,6 @@ export class Timer {
     const onTimerInputChange = (event) => {
       const { currentTarget: input } = event;
 
-      while (true) {
-        input.value = input.value.slice(-2).padStart(2, "0");
-
-        if (MAX_TIME[input.name] < parseInt(input.value)) {
-          input.value = MAX_TIME[input.name].toString();
-        } else if (parseInt(input.value) < 0) {
-          input.value = "00";
-        } else {
-          break;
-        }
-      }
-
       for (const timerInput of timerEleArr) {
         if (parseInt(timerInput.value) !== 0) {
           this.btnStart.classList.remove(CLASS_DISABLED);
@@ -54,7 +50,15 @@ export class Timer {
       this.btnReset.classList.add(CLASS_DISABLED);
     };
 
-    timerEleArr.forEach((ele) => ele.addEventListener("keyup", onTimerInputChange));
+    timerEleArr.forEach((ele) => {
+      ele.addEventListener("keyup", onTimerInputChange);
+      ele.addEventListener("focus", () => {
+        ele.value = "";
+      });
+      ele.addEventListener("focusout", () => {
+        ele.value = getSecureInputValue(ele.name, ele.value);
+      });
+    });
 
     const showElement = (element) => element.removeAttribute("hidden");
     const hideElement = (element) => element.setAttribute("hidden", "hidden");
