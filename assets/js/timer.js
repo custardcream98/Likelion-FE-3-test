@@ -1,4 +1,9 @@
 const CLASS_DISABLED = "disabled";
+const MAX_TIME = {
+  "timer-hour": 99,
+  "timer-minute": 59,
+  "timer-second": 59,
+};
 
 export class Timer {
   constructor() {
@@ -22,26 +27,39 @@ export class Timer {
   bindEvents() {
     const timerEleArr = [this.hours, this.minutes, this.seconds];
 
-    const onInputChange = (event) => {
+    const onTimerInputChange = (event) => {
       const { currentTarget: input } = event;
-      const inputValue = parseInt(input.value);
 
-      input.value = input.value.padStart(2, "0");
+      while (true) {
+        input.value = input.value.slice(-2).padStart(2, "0");
 
-      if (inputValue !== 0) {
-        this.btnStart.classList.remove(CLASS_DISABLED);
-        this.btnReset.classList.remove(CLASS_DISABLED);
-      } else {
-        this.btnStart.classList.add(CLASS_DISABLED);
-        this.btnReset.classList.add(CLASS_DISABLED);
+        if (MAX_TIME[input.name] < parseInt(input.value)) {
+          input.value = MAX_TIME[input.name].toString();
+        } else if (parseInt(input.value) < 0) {
+          input.value = "00";
+        } else {
+          break;
+        }
       }
+
+      for (const timerInput of timerEleArr) {
+        if (parseInt(timerInput.value) !== 0) {
+          this.btnStart.classList.remove(CLASS_DISABLED);
+          this.btnReset.classList.remove(CLASS_DISABLED);
+          return;
+        }
+      }
+
+      this.btnStart.classList.add(CLASS_DISABLED);
+      this.btnReset.classList.add(CLASS_DISABLED);
     };
-    timerEleArr.forEach((ele) => ele.addEventListener("input", onInputChange));
+
+    timerEleArr.forEach((ele) => ele.addEventListener("keyup", onTimerInputChange));
 
     const showElement = (element) => element.removeAttribute("hidden");
     const hideElement = (element) => element.setAttribute("hidden", "hidden");
 
-    const timeout = async () => {
+    const timeout = () => {
       timerEleArr.forEach((ele) => ele.setAttribute("readonly", "readonly"));
       this.currentTimeout = setTimeout(() => {
         const [hoursVal, minutesVal, secondsVal] = timerEleArr.map((ele) => parseInt(ele.value));
@@ -87,7 +105,7 @@ export class Timer {
       timerEleArr.forEach((ele) => {
         ele.removeAttribute("readonly");
         ele.value = "00";
-        onInputChange(event);
+        onTimerInputChange(event);
       });
       hideElement(this.btnPause);
       showElement(this.btnStart);
