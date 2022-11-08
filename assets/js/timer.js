@@ -85,6 +85,8 @@ export class Timer {
         timerEleArr.forEach((ele) => ele.removeAttribute("readonly"));
         hideElement(this.btnPause);
         showElement(this.btnStart);
+        this.btnStart.classList.add("disabled");
+        this.btnReset.classList.add("disabled");
       }, 1000);
     };
 
