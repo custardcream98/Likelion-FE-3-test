@@ -144,6 +144,8 @@ h1 .weniv-logo {
 
   background-repeat: no-repeat;
   background-position: 23px center;
+
+  color: var(--color-text-light);
 }
 
 .timer-btn-start {
