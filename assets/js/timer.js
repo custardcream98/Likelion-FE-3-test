@@ -66,7 +66,7 @@ export class Timer {
     this.timerEleArr.forEach((ele) => {
       ele.addEventListener("keyup", this.changeBtnAbled);
       ele.addEventListener("focus", () => {
-        ele.value = "";
+        if (!this.currentTimeout) ele.value = "";
       });
       ele.addEventListener("focusout", () => {
         ele.value = this.getSecureInputValue(ele.name, ele.value);
@@ -86,11 +86,12 @@ export class Timer {
 
     this.btnReset.addEventListener("click", () => {
       clearTimeout(this.currentTimeout);
+      this.currentTimeout = null;
       this.timerEleArr.forEach((ele) => {
         ele.removeAttribute("readonly");
         ele.value = "00";
-        this.changeBtnAbled();
       });
+      this.changeBtnAbled();
       this.changeBtnVisibility("stopTimer");
     });
   };
@@ -173,6 +174,7 @@ export class Timer {
 
       alert("⏰ 타이머로 맞춘 시간이 모두 지나갔습니다.");
 
+      this.currentTimeout = null;
       this.timerEleArr.forEach((ele) => ele.removeAttribute("readonly"));
       this.changeBtnVisibility("stopTimer");
       this.changeBtnAbled();
