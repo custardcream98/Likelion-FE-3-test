@@ -15,8 +15,8 @@
       <article class="timer">
         <h2 class="timer-title">TIMER</h2>
         <div class="timer-indicator-wrapper">
-          <div class="timer-indicator">
-            <strong class="timer-indicator-title">HRS</strong>
+          <label class="timer-indicator"
+            >HRS
             <input
               id="timer-hour"
               name="timer-hour"
@@ -26,10 +26,9 @@
               min="0"
               max="99"
             />
-          </div>
-          <div class="timer-indicator">
-            <strong class="timer-indicator-title">MIN</strong>
-            <input
+          </label>
+          <label class="timer-indicator"
+            >MIN<input
               id="timer-minute"
               name="timer-minute"
               class="timer-input"
@@ -37,11 +36,9 @@
               value="00"
               min="0"
               max="59"
-            />
-          </div>
-          <div class="timer-indicator">
-            <strong class="timer-indicator-title">SEC</strong>
-            <input
+          /></label>
+          <label class="timer-indicator"
+            >SEC<input
               id="timer-second"
               name="timer-second"
               class="timer-input"
@@ -49,8 +46,7 @@
               value="00"
               min="0"
               max="59"
-            />
-          </div>
+          /></label>
         </div>
         <div class="btn-wrapper">
           <button id="btn-start" class="timer-btn timer-btn-start disabled">START</button>
