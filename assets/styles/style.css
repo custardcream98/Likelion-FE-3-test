@@ -64,6 +64,7 @@ h1 .weniv-logo {
 .timer-subtitle {
   display: block;
   text-align: center;
+  margin-bottom: 4px;
   font-size: 12px;
   line-height: 14px;
   color: #a5b6ee;
@@ -80,10 +81,25 @@ h1 .weniv-logo {
   background-image: url(../img/timer-box.png);
   color: #ffffff;
 }
-
 .timer-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.timer-indicator {
+  position: relative;
+}
+.timer-indicator:not(:last-child):after {
+  content: " ";
+  position: absolute;
+
+  left: 88px;
+  top: 44px;
+
+  width: 6px;
+  height: 26px;
+
+  background: url(../img/dot.svg);
 }
 
 .btn-wrapper {
