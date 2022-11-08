@@ -3,6 +3,10 @@
 body {
   background: radial-gradient(96.74% 276.79% at 3.59% 5.28%, #f0f4ff 0%, #a5b6ee 100%);
   background-attachment: fixed; /* 그라디언트 뷰포트 꽉차게 */
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
 }
 
 h1 {
@@ -21,6 +25,7 @@ h1 .weniv-logo {
   width: 400px;
   height: 360px;
   margin: auto;
+  padding: 48px 58px 40px 58px;
 
   background: linear-gradient(144.07deg, #5572bb 2.13%, #374b7c 102.97%);
   box-shadow: 20px 20px 60px 10px rgba(55, 75, 124, 0.4);
@@ -28,9 +33,48 @@ h1 .weniv-logo {
 }
 
 .timer-title {
+  display: block;
+  text-align: center;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.timer-indicator-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  width: 100%;
+  margin-top: 57px;
+}
+
+.timer-subtitle {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  line-height: 14px;
+  color: #a5b6ee;
+}
+
+.timer-input {
+  width: 80px;
+  height: 80px;
+  background-image: url(../img/timer-box.png);
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
 }
 
 button.disabled {
   color: red;
   pointer-events: none;
+}
+
+footer {
+  margin-top: 60px;
+  margin-bottom: 103px;
+  text-align: center;
 }
