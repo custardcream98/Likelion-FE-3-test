@@ -134,6 +134,9 @@ h1 .weniv-logo {
 .timer-btn {
   position: relative;
 
+  width: 112px;
+  height: 48px;
+
   padding: 16px 23px 16px 44px;
 
   font-size: var(--font-size-m);
