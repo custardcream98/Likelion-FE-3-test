@@ -1,14 +1,36 @@
 @import "reset.css";
 
+:root {
+  --font-size-xl: 40px;
+  --font-size-lg: 24px;
+  --font-size-m: 14px;
+  --font-size-xs: 12px;
+
+  --color-text-light: #ffffff;
+  --color-text-dark: #617199;
+
+  --body-background: radial-gradient(96.74% 276.79% at 3.59% 5.28%, #f0f4ff 0%, #a5b6ee 100%);
+  --timer-background: linear-gradient(144.07deg, #5572bb 2.13%, #374b7c 102.97%);
+  --timer-saperator-color: #3d538a;
+  --timer-saperator-shadow: 0 1px 0 0 #5b75b4;
+
+  --timer-indicator-title-text: #a5b6ee;
+
+  --btn-disabled-background: #324577;
+  --btn-start-background: #5180ff;
+  --btn-reset-background: #15c2b8;
+  --btn-pause-background: #fb7099;
+}
+
 body {
-  background: radial-gradient(96.74% 276.79% at 3.59% 5.28%, #f0f4ff 0%, #a5b6ee 100%);
+  background: var(--body-background);
   background-attachment: fixed; /* 그라디언트 뷰포트 꽉차게 */
 
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 700;
 
-  color: #ffffff;
+  color: var(--color-text-light);
 }
 
 h1 {
@@ -29,7 +51,7 @@ h1 .weniv-logo {
   margin: auto;
   padding: 48px 58px 40px 58px;
 
-  background: linear-gradient(144.07deg, #5572bb 2.13%, #374b7c 102.97%);
+  background: var(--timer-background);
   box-shadow: 20px 20px 60px 10px rgba(55, 75, 124, 0.4);
   border-radius: 16px;
 }
@@ -38,7 +60,7 @@ h1 .weniv-logo {
   position: relative;
   display: block;
   text-align: center;
-  font-size: 24px;
+  font-size: var(--font-size-lg);
   line-height: 29px;
 }
 .timer-title::after {
@@ -49,8 +71,8 @@ h1 .weniv-logo {
   width: 100%;
   height: 1px;
 
-  background: #3d538a;
-  box-shadow: 0 1px 0 0 #5b75b4;
+  background: var(--timer-saperator-color);
+  box-shadow: var(--timer-saperator-shadow);
 }
 
 .timer-indicator-wrapper {
@@ -61,25 +83,25 @@ h1 .weniv-logo {
   margin-top: 57px;
 }
 
-.timer-subtitle {
+.timer-indicator-title {
   display: block;
   text-align: center;
   margin-bottom: 4px;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   line-height: 14px;
-  color: #a5b6ee;
+  color: var(--timer-indicator-title-text);
 }
 
 .timer-input {
   width: 80px;
   height: 80px;
 
-  font-size: 40px;
+  font-size: var(--font-size-xl);
   line-height: 48px;
   text-align: center;
 
   background-image: url(../img/timer-box.png);
-  color: #ffffff;
+  color: var(--color-text-light);
 }
 .timer-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -114,27 +136,26 @@ h1 .weniv-logo {
 
   padding: 16px 23px 16px 44px;
 
-  font-size: 14px;
+  font-size: var(--font-size-m);
   line-height: 17px;
 
   box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
   border-radius: 50px;
-  color: white;
 
   background-repeat: no-repeat;
   background-position: 23px center;
 }
 
 .timer-btn-start {
-  background-color: #5180ff;
+  background-color: var(--btn-start-background);
   background-image: url(../img/icon-start.svg);
 }
 .timer-btn-pause {
-  background-color: #15c2b8;
+  background-color: var(--btn-pause-background);
   background-image: url(../img/icon-pause.svg);
 }
 .timer-btn-reset {
-  background-color: #fb7099;
+  background-color: var(--btn-reset-background);
   background-image: url(../img/icon-reset.svg);
 }
 
@@ -145,8 +166,8 @@ h1 .weniv-logo {
   background-image: url(../img/icon-reset-disabled.svg);
 }
 button.disabled {
-  color: #617199;
-  background-color: #324577;
+  color: var(--color-text-dark);
+  background-color: var(--btn-disabled-background);
   pointer-events: none;
 }
 
@@ -155,7 +176,7 @@ footer {
   margin-bottom: 103px;
 
   font-weight: 400;
-  font-size: 14px;
+  font-size: var(--font-size-m);
   line-height: 17px;
   text-align: center;
 
