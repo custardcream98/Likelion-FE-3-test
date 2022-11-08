@@ -14,12 +14,6 @@ const DELTA_TO_SECOND_MAP = {
   "timer-second": 1,
 };
 
-const PARSE_TO_SECOND_FUNC_MAP = {
-  "timer-hour": (t) => t * HOUR_IN_SEC,
-  "timer-minute": (t) => t * MINUTE_IN_SEC,
-  "timer-second": (t) => t,
-};
-
 /**
  * 요소를 보이게 만듭니다.
  * @param {HTMLElement} element
@@ -162,7 +156,7 @@ export class Timer {
 
     this.currentTimeout = setTimeout(() => {
       let timeRemaining = this.timerEleArr
-        .map((ele) => PARSE_TO_SECOND_FUNC_MAP[ele.name](parseInt(ele.value)) || 0)
+        .map((ele) => DELTA_TO_SECOND_MAP[ele.name] * parseInt(ele.value) || 0)
         .reduce((acc, e) => acc + e, 0);
 
       if (timeRemaining > 0) {
@@ -176,6 +170,8 @@ export class Timer {
 
         return this.timeout();
       }
+
+      alert("⏰ 타이머로 맞춘 시간이 모두 지나갔습니다.");
 
       this.timerEleArr.forEach((ele) => ele.removeAttribute("readonly"));
       this.changeBtnVisibility("stopTimer");
