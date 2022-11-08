@@ -109,8 +109,44 @@ h1 .weniv-logo {
   margin-top: 40px;
 }
 
+.timer-btn {
+  position: relative;
+
+  padding: 16px 23px 16px 44px;
+
+  font-size: 14px;
+  line-height: 17px;
+
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 50px;
+  color: white;
+
+  background-repeat: no-repeat;
+  background-position: 23px center;
+}
+
+.timer-btn-start {
+  background-color: #5180ff;
+  background-image: url(../img/icon-start.svg);
+}
+.timer-btn-pause {
+  background-color: #15c2b8;
+  background-image: url(../img/icon-pause.svg);
+}
+.timer-btn-reset {
+  background-color: #fb7099;
+  background-image: url(../img/icon-reset.svg);
+}
+
+.timer-btn-start.disabled {
+  background-image: url(../img/icon-start-disabled.svg);
+}
+.timer-btn-reset.disabled {
+  background-image: url(../img/icon-reset-disabled.svg);
+}
 button.disabled {
-  color: red;
+  color: #617199;
+  background-color: #324577;
   pointer-events: none;
 }
 
