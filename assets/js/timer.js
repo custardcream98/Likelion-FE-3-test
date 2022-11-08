@@ -1,18 +1,7 @@
 const CLASS_DISABLED = "disabled";
-const MAX_TIME = {
-  "timer-hour": 99,
-  "timer-minute": 59,
-  "timer-second": 59,
-};
 
 const HOUR_IN_SEC = 3600;
 const MINUTE_IN_SEC = 60;
-
-const DELTA_TO_SECOND_MAP = {
-  "timer-hour": HOUR_IN_SEC,
-  "timer-minute": MINUTE_IN_SEC,
-  "timer-second": 1,
-};
 
 /**
  * 요소를 보이게 만듭니다.
@@ -45,17 +34,6 @@ export class Timer {
      * clearTimeout()에 사용합니다.
      * */
     this.currentTimeout = null;
-
-    /**
-     * timeout() 메서드에서 사용하는 객체
-     *
-     * 이 객체를 통해 `name` 값으로 요소에 접근할 수 있습니다.
-     */
-    this.TIMER_ELE_MAP = {
-      [this.hours.name]: this.hours,
-      [this.minutes.name]: this.minutes,
-      [this.seconds.name]: this.seconds,
-    };
   }
 
   setup = () => {
@@ -104,6 +82,12 @@ export class Timer {
    * @returns {string}
    */
   getSecureInputValue = (name, value) => {
+    const MAX_TIME = {
+      "timer-hour": 99,
+      "timer-minute": 59,
+      "timer-second": 59,
+    };
+
     if (MAX_TIME[name] < parseInt(value)) {
       return MAX_TIME[name].toString();
     } else if (parseInt(value) < 0 || value === "") {
@@ -156,17 +140,19 @@ export class Timer {
     this.timerEleArr.forEach((ele) => ele.setAttribute("readonly", "readonly"));
 
     this.currentTimeout = setTimeout(() => {
+      const deltaSecond = [HOUR_IN_SEC, MINUTE_IN_SEC, 1];
+
       let timeRemaining = this.timerEleArr
-        .map((ele) => DELTA_TO_SECOND_MAP[ele.name] * parseInt(ele.value) || 0)
+        .map((ele, i) => deltaSecond[i] * parseInt(ele.value) || 0)
         .reduce((acc, e) => acc + e, 0);
 
       if (timeRemaining > 0) {
         timeRemaining--;
 
-        this.timerEleArr.forEach((ele) => {
-          const nextTimeVal = Math.floor(timeRemaining / DELTA_TO_SECOND_MAP[ele.name]);
-          timeRemaining -= nextTimeVal * DELTA_TO_SECOND_MAP[ele.name];
-          this.TIMER_ELE_MAP[ele.name].value = nextTimeVal.toString().padStart(2, "0");
+        this.timerEleArr.forEach((ele, i) => {
+          const nextTimeVal = Math.floor(timeRemaining / deltaSecond[i]);
+          timeRemaining -= nextTimeVal * deltaSecond[i];
+          ele.value = nextTimeVal.toString().padStart(2, "0");
         });
 
         return this.timeout();
