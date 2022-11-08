@@ -53,11 +53,13 @@ export class Timer {
 
     this.btnStart.addEventListener("click", () => {
       this.changeBtnVisibility("runTimer");
+      this.timerEleArr.forEach((ele) => ele.setAttribute("readonly", "readonly"));
       this.timeout();
     });
 
     this.btnPause.addEventListener("click", () => {
       clearTimeout(this.currentTimeout);
+      this.currentTimeout = null;
       this.timerEleArr.forEach((ele) => ele.removeAttribute("readonly"));
       this.changeBtnVisibility("stopTimer");
     });
@@ -136,9 +138,6 @@ export class Timer {
    * 타이머 실행 함수, setTimeout()을 이용하며 남은 시간이 있을 경우 재귀적으로 호출합니다.
    */
   timeout = () => {
-    // input 요소 readonly attribute 부여
-    this.timerEleArr.forEach((ele) => ele.setAttribute("readonly", "readonly"));
-
     this.currentTimeout = setTimeout(() => {
       const deltaSecond = [HOUR_IN_SEC, MINUTE_IN_SEC, 1];
 
