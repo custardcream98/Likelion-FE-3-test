@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>위니브 타이머</title>
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+  </head>
+  <body>
+    <h1>
+      <img class="weniv-logo" src="./assets/img/weniv-logo.png" alt="위니브 로고" />
+    </h1>
+    <main>
+      <article class="timer">
+        <h2 class="timer-title">TIMER</h2>
+        <div class="timer-indicator-wrapper">
+          <div class="timer-indicator">
+            <strong class="timer-subtitle">HRS</strong>
+            <input id="timer-hour" class="timer-input" type="number" value="00" min="0" max="99" />
+          </div>
+          <div class="timer-indicator">
+            <strong class="timer-subtitle">MIN</strong>
+            <input
+              id="timer-minute"
+              class="timer-input"
+              type="number"
+              value="00"
+              min="0"
+              max="59"
+            />
+          </div>
+          <div class="timer-indicator">
+            <strong class="timer-subtitle">SEC</strong>
+            <input
+              id="timer-second"
+              class="timer-input"
+              type="number"
+              value="00"
+              min="0"
+              max="59"
+            />
+          </div>
+        </div>
+        <button id="btn-start" class="timer-btn disabled">START</button>
+        <button id="btn-pause" class="timer-btn" hidden>PAUSE</button>
+        <button id="btn-reset" class="timer-btn disabled">RESET</button>
+      </article>
+    </main>
+    <footer>&copy; WENIV CORP.</footer>
+    <script src="./assets/js/index.js" type="module"></script>
+  </body>
+</html>
