@@ -1,5 +1,7 @@
 @import "reset.css";
 
+@import url("https://unpkg.com/pretendard@1.3.6/dist/web/static/pretendard.css");
+
 :root {
   --font-size-xl: 40px;
   --font-size-lg: 24px;
